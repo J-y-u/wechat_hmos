@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+  <title>xxhdpi/ic/navigation/discover_action</title>
+  <g id="_ic/navigation/discover_action" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <circle cx="12" cy="12" r="10" fill="#07C160"/>
+    <path d="M17.16 6.84a1.002 1.002 0 0 0-1.13-.13l-6.84 2.29a1.002 1.002 0 0 0-.64.64l-2.29 6.84a1.003 1.003 0 0 0 1.13 1.13l6.84-2.29a1 1 0 0 0 .64-.64l2.29-6.84a1.001 1.001 0 0 0-.13-1.13zM12 13.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" fill="#FFFFFF"/>
+  </g>
+</svg>

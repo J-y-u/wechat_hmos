@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+<title>ic_public_contacts_filled</title>
+<g fill="#07C160">
+  <circle cx="12" cy="8" r="4.5"/>
+  <path d="M4 20C4 16.5 7.5 14 12 14C16.5 14 20 16.5 20 20L4 20Z"/>
+</g>
+</svg>
