@@ -1,6 +1,7 @@
 import { router } from '@kit.ArkUI'
 import { WeChat_CurrentUserKey } from '../../constant'
 import { UserInfo, UserInfoModel } from '../../models/user'
+import BottomInput from './Components/BottomInput'
 
 @Entry
 @Component
@@ -43,7 +44,10 @@ struct ChatDetail {
       })
       .height(50)
       .width("100%")
-      // Text(JSON.stringify(this.talkUser))
+
+      BottomInput()
     }
+    .height('100%')
+    .justifyContent(FlexAlign.SpaceBetween)
   }
 }
