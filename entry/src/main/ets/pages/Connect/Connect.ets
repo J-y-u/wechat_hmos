@@ -5,8 +5,16 @@ import { WeChatStore } from "../../utils/chat_store"
 @Preview
 @Component
 struct Connect {
+
   @State
   userList: UserInfoModel[] = []
+
+  @State
+  filterList: UserInfoModel[] = []  // 筛选之后的数组
+
+  @State
+  @Watch("updateFilterList")
+  searchName: string = ""
 
   aboutToAppear(): void {
     this.getUserList()
@@ -14,12 +22,22 @@ struct Connect {
 
   getUserList() {
     this.userList = WeChatStore.getWeChatConnect()
+    this.updateFilterList()
+  }
+
+  updateFilterList () {
+    if(this.searchName) {
+      this.filterList = this.userList.filter(item => item.username.includes(this.searchName))
+      // 搜索
+      return
+    }
+    this.filterList = this.userList
   }
 
   build() {
     Column() {
-      Row() {
-        Search({ placeholder:'搜索' })
+      Row () {
+        Search({ placeholder: '搜索', value: $$this.searchName })
           .height(30)
           .borderRadius(4)
           .backgroundColor($r("app.color.white"))
@@ -31,7 +49,7 @@ struct Connect {
       })
 
       List() {
-        ForEach(this.userList, (item: UserInfoModel) => {
+        ForEach(this.filterList, (item: UserInfoModel) => {
           ListItem() {
             Row({ space:10 }) {
               Image(item.avatar)
