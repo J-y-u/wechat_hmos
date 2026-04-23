@@ -1,8 +1,12 @@
 import { router } from '@kit.ArkUI'
+import { WeChat_CurrentUserKey } from '../../constant'
+import { UserInfo, UserInfoModel } from '../../models/user'
 
 @Entry
 @Component
 struct ChatDetail {
+  @StorageProp(WeChat_CurrentUserKey)
+  currentUser: UserInfoModel = new UserInfoModel({} as UserInfo)
 
   build() {
     Column() {
@@ -27,6 +31,7 @@ struct ChatDetail {
       })
       .height(50)
       .width("100%")
+      Text(JSON.stringify(this.currentUser))
     }
   }
 }

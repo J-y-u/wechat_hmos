@@ -58,3 +58,10 @@ export const DefaultUserList: UserInfo[] = [{
   avatar: 'https://robohash.org/test5?set=set4&size=200x200',
   user_id: '10'
 }]
+
+// 当前默认用户
+export const CurrentUser: UserInfo = {
+  username: 'jyu',
+  avatar: 'https://img2.baidu.com/it/u=3135824442,872902204&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+  user_id: '9999'
+}
