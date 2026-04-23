@@ -5,8 +5,20 @@ import { UserInfo, UserInfoModel } from '../../models/user'
 @Entry
 @Component
 struct ChatDetail {
+
   @StorageProp(WeChat_CurrentUserKey)
-  currentUser: UserInfoModel = new UserInfoModel({} as UserInfo)
+  currentUser: UserInfoModel = new UserInfoModel({} as UserInfo)  // 我
+
+  @Provide
+  talkUser: UserInfoModel = new UserInfoModel({} as UserInfo)  // 你
+
+  aboutToAppear(): void {
+    // 获取和我对话的用户的信息
+    this.getTalkUser()
+  }
+  getTalkUser() {
+    this.talkUser = router.getParams() as UserInfoModel
+  }
 
   build() {
     Column() {
@@ -20,7 +32,7 @@ struct ChatDetail {
           .onClick(() => {
             router.back()
           })
-        Text("小果果")
+        Text(this.talkUser.username)
           .fontColor($r("app.color.text_primary"))
           .width('100%')
           .textAlign(TextAlign.Center)
@@ -31,7 +43,7 @@ struct ChatDetail {
       })
       .height(50)
       .width("100%")
-      Text(JSON.stringify(this.currentUser))
+      // Text(JSON.stringify(this.talkUser))
     }
   }
 }
