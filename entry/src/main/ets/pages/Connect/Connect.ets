@@ -1,4 +1,4 @@
-import { promptAction } from "@kit.ArkUI"
+import { promptAction, router, Router } from "@kit.ArkUI"
 import { UserInfo, UserInfoModel } from "../../models/user"
 import { WeChatStore } from "../../utils/chat_store"
 
@@ -74,6 +74,11 @@ struct Connect {
             normal: {
               .backgroundColor(($r("app.color.white")))
             }
+          })
+          .onClick(() => {
+            router.pushUrl({
+                url: "pages/ChatDetail/ChatDetail",
+              })
           })
         })
       }
