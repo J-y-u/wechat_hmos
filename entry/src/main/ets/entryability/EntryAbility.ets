@@ -1,6 +1,6 @@
 import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { window } from '@kit.ArkUI';
+import { window, KeyboardAvoidMode } from '@kit.ArkUI';
 import { WeChatStore } from '../utils/chat_store';
 import { WeChat_CurrentUserKey } from '../constant';
 import { UserInfoModel } from '../models/user';
@@ -33,6 +33,10 @@ export default class EntryAbility extends UIAbility {
         return;
       }
       hilog.info(DOMAIN, 'testTag', 'Succeeded in loading the content.');
+      // 设置键盘避让模式为压缩
+      windowStage.getMainWindowSync()
+        .getUIContext()
+        .setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE)
     });
   }
 
