@@ -55,7 +55,7 @@ export const DefaultUserList: UserInfo[] = [{
   user_id: '9'
 },{
   username: '爱哭的燕子🦋🦋',
-  avatar: 'https://robohash.org/test5?set=set4&size=200x200',
+  avatar: 'https://gips1.baidu.com/it/u=2964993118,1268983187&fm=3074&app=3074&f=PNG?w=2048&h=2048',
   user_id: '10'
 }]
 

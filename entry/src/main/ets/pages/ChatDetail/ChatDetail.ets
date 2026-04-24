@@ -2,6 +2,7 @@ import { router } from '@kit.ArkUI'
 import { WeChat_CurrentUserKey } from '../../constant'
 import { UserInfo, UserInfoModel } from '../../models/user'
 import BottomInput from './Components/BottomInput'
+import Message from './Components/Message'
 
 @Entry
 @Component
@@ -45,6 +46,21 @@ struct ChatDetail {
       .height(50)
       .width("100%")
 
+      List ({ space: 20 }) {
+        ForEach([1,2,3,4,5,6,7,8, 1,2,3,4,5,6,7,8], () => {
+          ListItem() {
+            Message()
+          }
+        })
+      }
+      .layoutWeight(1)
+      .padding({
+        top: 10,
+        bottom: 10
+      })
+      .backgroundColor($r("app.color.back_color"))
+
+      // 底部内容
       BottomInput()
     }
     .height('100%')
