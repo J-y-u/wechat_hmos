@@ -1,0 +1,19 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- 键盘外框 圆角矩形 -->
+  <rect x="25" y="40" width="150" height="120" rx="18" ry="18" fill="#e5e7eb" stroke="#9ca3af" stroke-width="6"/>
+  
+  <!-- 按键点阵简化排布 -->
+  <!-- 第一排按键 -->
+  <rect x="45" y="60" width="22" height="16" rx="3" fill="#6b7280"/>
+  <rect x="75" y="60" width="22" height="16" rx="3" fill="#6b7280"/>
+  <rect x="105" y="60" width="22" height="16" rx="3" fill="#6b7280"/>
+  <rect x="135" y="60" width="22" height="16" rx="3" fill="#6b7280"/>
+
+  <!-- 第二排按键 -->
+  <rect x="55" y="88" width="22" height="16" rx="3" fill="#6b7280"/>
+  <rect x="85" y="88" width="22" height="16" rx="3" fill="#6b7280"/>
+  <rect x="115" y="88" width="22" height="16" rx="3" fill="#6b7280"/>
+
+  <!-- 底部长空格按键 -->
+  <rect x="60" y="118" width="80" height="14" rx="3" fill="#6b7280"/>
+</svg>
