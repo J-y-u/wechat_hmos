@@ -4,6 +4,9 @@ struct BottomInput {
 
   @State
   showVoice: boolean = false // 是否显示语音输入
+  @State
+  content: string = ""
+  sendTextMessage: (content: string) => void = () => {}
 
   build() {
     Row({ space: 10 }) {
@@ -23,11 +26,18 @@ struct BottomInput {
           .fontColor($r("app.color.text_primary"))
           .layoutWeight(1)
       }else {
-        TextInput()
+        TextInput({ text: $$this.content })
           .height(35)
           .borderRadius(2)
           .backgroundColor($r("app.color.white"))
           .layoutWeight(1)
+          .onSubmit(() => {
+            if (this.content) {
+              // 发送
+              this.sendTextMessage(this.content)
+              this.content = "" // 输入框清空
+            }
+          })
       }
 
       Image($r("app.media.ic_public_add_norm"))

@@ -1,5 +1,6 @@
 import { router } from '@kit.ArkUI'
 import { WeChat_CurrentUserKey } from '../../constant'
+import { MessageInfo, MessageInfoModel } from '../../models/message'
 import { UserInfo, UserInfoModel } from '../../models/user'
 import BottomInput from './Components/BottomInput'
 import Message from './Components/Message'
@@ -14,12 +15,26 @@ struct ChatDetail {
   @Provide
   talkUser: UserInfoModel = new UserInfoModel({} as UserInfo)  // 你
 
+  @State
+  messList: MessageInfoModel[] = []
+
   aboutToAppear(): void {
     // 获取和我对话的用户的信息
     this.getTalkUser()
   }
   getTalkUser() {
     this.talkUser = router.getParams() as UserInfoModel
+  }
+
+  // 发送文本消息
+  sendTextMessage (content: string) {
+    // 新建消息
+    let mess = new MessageInfoModel({
+      messageContent: content,
+      sendUser: this.currentUser, // 我发的消息
+      connectUser: this.talkUser // 属于我和小趴菜的聊天记录
+    } as MessageInfo)
+    this.messList.push(mess) // 追加消息
   }
 
   build() {
@@ -47,9 +62,9 @@ struct ChatDetail {
       .width("100%")
 
       List ({ space: 20 }) {
-        ForEach([1,2,3,4,5,6,7,8, 1,2,3,4,5,6,7,8], () => {
+        ForEach(this.messList, (item: MessageInfoModel) => {
           ListItem() {
-            Message()
+            Message({ currentMessage: item })
           }
         })
       }
@@ -61,7 +76,11 @@ struct ChatDetail {
       .backgroundColor($r("app.color.back_color"))
 
       // 底部内容
-      BottomInput()
+      BottomInput({
+        sendTextMessage: (content: string) => {
+          this.sendTextMessage(content)
+        }
+      })
     }
     .height('100%')
     .justifyContent(FlexAlign.SpaceBetween)

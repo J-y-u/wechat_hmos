@@ -5,25 +5,24 @@ import { UserInfo, UserInfoModel } from "../../../models/user"
 @Preview
 @Component
 struct Message {
-
   // 我是谁
   @StorageProp(WeChat_CurrentUserKey)
   currentUser: UserInfoModel = new UserInfoModel({} as UserInfo) // "我"
   // 当前消息的对象的内容
+  @Require
   @Prop
   currentMessage: MessageInfoModel = new MessageInfoModel({} as MessageInfo)
-
   @State
   isOwnMessage: boolean = this.currentUser.user_id === this.currentMessage?.sendUser?.user_id
 
   build() {
     Row () {
-      Image("https://gips1.baidu.com/it/u=2964993118,1268983187&fm=3074&app=3074&f=PNG?w=2048&h=2048")
+      Image(this.currentMessage.sendUser.avatar)
         .width(40)
         .aspectRatio(1)
         .borderRadius(4)
       Row () {
-        Text("你真让我伤心")
+        Text(this.currentMessage.messageContent)
           .backgroundColor(this.isOwnMessage ? $r("app.color.second_primary"): $r("app.color.white"))
           .fontColor($r("app.color.text_primary"))
           .padding(10)
@@ -45,4 +44,4 @@ struct Message {
   }
 }
 
-export  default Message;
+export default Message;
