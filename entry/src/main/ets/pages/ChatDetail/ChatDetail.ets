@@ -2,6 +2,7 @@ import { router } from '@kit.ArkUI'
 import { WeChat_CurrentUserKey } from '../../constant'
 import { MessageInfo, MessageInfoModel } from '../../models/message'
 import { UserInfo, UserInfoModel } from '../../models/user'
+import { WeChatStore } from '../../utils/chat_store'
 import { getRequestMessage } from '../../utils/request'
 import BottomInput from './Components/BottomInput'
 import Message from './Components/Message'
@@ -26,8 +27,15 @@ struct ChatDetail {
     // 获取和我对话的用户的信息
     this.getTalkUser()
   }
-  getTalkUser() {
+
+  getAllRecord () {
+    this.messList = WeChatStore.getWeChatMessage(this.talkUser.user_id)
+    this.scroller.scrollEdge(Edge.Bottom)
+  }
+
+  getTalkUser () {
     this.talkUser = router.getParams() as UserInfoModel
+    this.getAllRecord()
   }
 
   // 发送文本消息
@@ -39,6 +47,7 @@ struct ChatDetail {
       connectUser: this.talkUser // 属于我和小趴菜的聊天记录
     } as MessageInfo)
     this.messList.push(mess) // 追加消息
+    WeChatStore.addOneWeChatMessage(this.talkUser.user_id, mess)  // 添加消息到聊天记录
     this.scroller.scrollEdge(Edge.End)
     // 发送消息道服务器 得到响应的内容
     setTimeout(() => {
@@ -57,6 +66,7 @@ struct ChatDetail {
       connectUser: this.talkUser // 属于我和小趴菜的聊天记录
     } as MessageInfo)
     this.messList.push(mess)
+    WeChatStore.addOneWeChatMessage(this.talkUser.user_id, mess)  // 添加消息到聊天记录
     this.talkUserInputIng = false
     this.scroller.scrollEdge(Edge.End)
   }
