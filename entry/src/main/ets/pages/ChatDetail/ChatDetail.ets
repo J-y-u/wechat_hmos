@@ -20,6 +20,7 @@ struct ChatDetail {
   messList: MessageInfoModel[] = []
   @State
   talkUserInputIng: boolean = false // 对方正在输入
+  scroller: Scroller = new Scroller() // 控制消息的滚动条
 
   aboutToAppear(): void {
     // 获取和我对话的用户的信息
@@ -38,6 +39,7 @@ struct ChatDetail {
       connectUser: this.talkUser // 属于我和小趴菜的聊天记录
     } as MessageInfo)
     this.messList.push(mess) // 追加消息
+    this.scroller.scrollEdge(Edge.End)
     // 发送消息道服务器 得到响应的内容
     setTimeout(() => {
       this.getResponseMessage(content)
@@ -56,6 +58,7 @@ struct ChatDetail {
     } as MessageInfo)
     this.messList.push(mess)
     this.talkUserInputIng = false
+    this.scroller.scrollEdge(Edge.End)
   }
 
   build() {
@@ -82,7 +85,7 @@ struct ChatDetail {
       .height(50)
       .width("100%")
 
-      List ({ space: 20 }) {
+      List ({ space: 20, scroller: this.scroller }) {
         ForEach(this.messList, (item: MessageInfoModel) => {
           ListItem() {
             Message({ currentMessage: item })
