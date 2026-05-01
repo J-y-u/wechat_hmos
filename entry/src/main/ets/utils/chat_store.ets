@@ -54,4 +54,28 @@ export class WeChatStore {
     store.putSync(`${WeChat_UserRecordKey}_${userId}`, JSON.stringify(list))
     await store.flush() // 写入磁盘
   }
+
+  // 获取所有人的聊天记录的最后一条的集合
+  static getAllLastRecord () {
+    const store = WeChatStore.getWeChatStore()
+    const arr: MessageInfoModel[] = []
+    const result = store.getAllSync() as object // 坑点 object arkTS类型 Object 类似于Java的类型
+    Object.keys(result).forEach(key => {
+      // key `${WeChat_UserRecordKey}_${userId}`
+      if (key.includes(WeChat_UserRecordKey)) {
+        // key对应的value就是聊天记录
+        if (result[key]) {
+          const list = JSON.parse(result[key]) as MessageInfoModel[] // 所有的聊天记录
+          if (list.length) {
+            arr.push(list[list.length - 1])
+          }
+        }
+      }
+    })
+    // 排序 按照时间排序
+    arr.sort((a: MessageInfoModel, b: MessageInfoModel) => {
+      return b.sendTime - a.sendTime
+    }) // 会对原数组排序
+    return arr
+  }
 }

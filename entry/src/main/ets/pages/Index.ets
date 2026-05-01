@@ -1,5 +1,6 @@
 import { TabBarClass } from '../models/tab'
 import Connect from './Connect/Connect'
+import WeChat from './WeChat/WeChat'
 
 @Entry
 @Component
@@ -58,7 +59,9 @@ struct Index {
         TabContent() {
           if(item.name === 'connect') {
             Connect()
-          }else {
+          } else if (item.name === 'wechat') {
+            WeChat()
+          } else {
             Text(item.title)
           }
         }
@@ -68,4 +71,8 @@ struct Index {
     .animationDuration(100)
     .barPosition(BarPosition.End)
   }
+}
+
+function Wechat() {
+  throw new Error('Function not implemented.')
 }
