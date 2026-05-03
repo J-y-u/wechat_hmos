@@ -102,6 +102,9 @@ struct ChatDetail {
           }
         })
       }
+      .onAppear(() => {
+        this.scroller.scrollEdge(Edge.End)
+      })
       .layoutWeight(1)
       .padding({
         top: 10,
